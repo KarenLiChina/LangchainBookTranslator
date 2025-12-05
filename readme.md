@@ -11,3 +11,4 @@ pip install -r requirements.txt
 配置`LANGCHAIN_TRACING_V2`，`LANGCHAIN_API_KEY`后可以在https://smith.langchain.com/ Tracing Projects中查看调用大模型的使用情况
 
 # 具体实现
+系统配置工具包 utils
