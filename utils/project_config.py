@@ -27,7 +27,7 @@ class ProjectConfig:
 
         # 命令行参数配置的初始化
         if self._args is None:
-            arg_utils = ArgumentUtils
+            arg_utils = ArgumentUtils()
             self._args = arg_utils.parse_arg()
 
         # YAML配置文件的初始化：如果YAML和命令行都包含参数，以命令行为准

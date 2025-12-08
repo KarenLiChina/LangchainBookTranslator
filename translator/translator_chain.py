@@ -33,15 +33,15 @@ class TranslatorChain:
             if content.content_type == ContentType.TEXT:
                 text = f"请按照要求翻译一下的内容:{content.original}"
             elif content.content_type == ContentType.TABLE:
-                text = f"请按照要求翻译一下的内容，而且每个元素之间用逗号隔开，以非Markdown的表格形式返回:\n {content.get_original_to_string()}"
+                text = f"请按照要求翻译一下的内容，以非Markdown的表格形式返回:\n {content.get_original_to_string()}"
 
             result = self.langchain.invoke({
                 'source_language': source_language,
                 'target_language': target_language,
                 'text': text
             })
-            log.info(result)
+            log.info(result.content)
         except Exception as e:
             log.exception(e)
             return result, False  # 报错时候返回False
-        return text, True
+        return result.content, True

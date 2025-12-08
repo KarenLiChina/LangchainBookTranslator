@@ -9,7 +9,7 @@ class Model:
     def create_llm(self):
         print("create llm")
 
-    def make_prompt(self, content, source_language, target_language):
+    def make_prompt(self):
         """
         创建发送给大语言模型的提示模板
         """

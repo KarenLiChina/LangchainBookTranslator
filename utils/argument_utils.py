@@ -24,7 +24,4 @@ class ArgumentUtils:
         """
         # 解析参数
         args = self.parser.parse_args()
-        # 参数的验证，可以有更多
-        if args.model_type == 'OpenAIModel' and not args.openai_model and not args.openai_api_key:
-            self.parser.error('当选择OpenAI后，--openai_model和--openai_api_key参数，必须要传！')
         return args
