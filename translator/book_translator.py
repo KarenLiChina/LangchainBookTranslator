@@ -42,4 +42,4 @@ class PDFTranslator:
                 self.book.pages[page_index].contents[content_index].set_translation(translation_text, status)
 
         # 把翻译后的数据写入文件 Writer
-        self.writer.save_book(out_file_path, out_file_format)
+        return self.writer.save_book(out_file_path, out_file_format)

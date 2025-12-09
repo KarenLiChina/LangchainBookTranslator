@@ -1,13 +1,9 @@
-import os
-
 import pandas as pd
-from fontTools.ttLib import TTFont
 from reportlab.lib import pagesizes, colors
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from reportlab.platypus import SimpleDocTemplate, Paragraph, TableStyle, Table, PageBreak, Spacer
-from scipy.constants import inch
 
 from domain.content import ContentType
 from utils.log_utils import log
@@ -27,11 +23,12 @@ class FileWriter:
         """
         print(file_format)
         if file_format.lower() == 'pdf':
-            self.save_book_pdf(output_path)
+            return self.save_book_pdf(output_path)
         elif file_format.lower() == 'markdown':
-            self.save_book_markdown(self.book)
+            return self.save_book_markdown(self.book)
         else:
             log.warning('当前项目文件格式不支持，项目仅支持 PDF，MarkDown')
+            return ''
 
     def save_book_pdf(self, output_path: str = None):
         """
@@ -194,6 +191,7 @@ class FileWriter:
         try:
             doc.build(pdf_data)
             log.info('pdf文件写入完成！')
+            return output_path
         except Exception as e:
             log.error(f"PDF构建失败: {e}")
             import traceback
@@ -239,3 +237,4 @@ class FileWriter:
                         md_file.write('\n -----\n\n')  # 除了最后一页，每页的后面都加上一个分页符
 
             log.info('MarkDown文件写入完成！')
+            return output_path
